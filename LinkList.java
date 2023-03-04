@@ -17,8 +17,8 @@ public class LinkList {
         System.out.println("");
     }
 
-    public void Insert(int num){
-        Link newLink = new Link(num);
+    public void InsertFirst(int Key){
+        Link newLink = new Link(Key);
         newLink.Next= First;
         First = newLink;
     }
@@ -26,35 +26,52 @@ public class LinkList {
     public Link Delete(){
         Link tepm =First;
         First=First.Next;
-        return tepm;
+        return tepm;                                                
     } 
     
-    public boolean InsertIndex(int Key,int num){
-       Link Newlink = new Link(num);
+    public boolean InsertAfter(int Key,int num){
+    //    Link Newlink = new Link(num);
        
-       Link cur = First;
+    //    Link cur = First;
 
 
-       while(cur==null){
-           if(cur.Intdata==Key){
-               Newlink.Next=cur.Next;
-               cur.Next=Newlink;
-               return true;
-           }else{
-            cur = cur.Next;
-           }
-       }
+    //    while(cur==null){                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+    //        if(cur.Intdata==Key){
+    //            Newlink.Next=cur.Next;
+    //            cur.Next=Newlink;
+    //            return true;
+    //        }else{
+    //         cur = cur.Next;
+    //        }
+    //    }
 
-       return false;
+    //    return false;
+
+
+        Link curr = FindLink(Key);
+        if(curr != null){
+            Link newlink = new Link(num);
+            newlink.Next=curr.Next;
+            curr.Next=newlink;
+            return true;
+        }else{
+            return false;
+        }
     }
 
-    public boolean DeleteIsert(int Key){
+    public boolean DeleteMidd(int Key){
          Link cur = First;
          Link Perviors= First;
 
          while(cur==null){
             if(cur.Intdata==Key){
-                Perviors.Next=cur.Next;
+                if(cur==First){
+                   First=First.Next;
+                   return true;
+                }else{
+                    Perviors.Next=cur.Next;
+                }
+                
                 return true;
             }else{
                 Perviors=cur;
@@ -62,6 +79,40 @@ public class LinkList {
             }
          }
 
-         return true;
+         return false;
+    }
+
+
+    public boolean Find(int key){
+
+        Link currunt = First;
+
+        while(currunt!= null){
+            if(currunt.Intdata ==key){
+                 return true;
+            }
+
+            else{
+                currunt = currunt.Next;
+            }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+        }
+        return false;
+    }
+
+
+    public Link FindLink(int key){
+
+        Link currunt = First;
+
+        while(currunt!= null){
+            if(currunt.Intdata ==key){
+                 return currunt;
+            }
+
+            else{
+                currunt = currunt.Next;
+            }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+        }
+        return null;
     }
 }
